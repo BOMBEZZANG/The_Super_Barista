@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using BaristaSimulator.Core;
 using BaristaSimulator.UI;
+using BaristaSimulator.Data;
 
 namespace BaristaSimulator.Modules
 {
@@ -23,6 +24,13 @@ namespace BaristaSimulator.Modules
         
         [Header("Viewpoints")]
         [SerializeField] private List<CameraViewpoint> viewpoints = new List<CameraViewpoint>();
+        
+        [Header("Persistence")]
+        [SerializeField] private CameraViewpointAsset savedViewpoints;
+        [SerializeField] private bool loadSavedOnStart = true;
+        
+        // Public accessor for editor
+        public List<CameraViewpoint> Viewpoints => viewpoints;
         
         private CameraViewpoint currentViewpoint;
         private int currentViewIndex = 0;
@@ -60,38 +68,51 @@ namespace BaristaSimulator.Modules
         
         void InitializeDefaultViewpoints()
         {
+            // Try to load saved viewpoints first
+            if (loadSavedOnStart && savedViewpoints != null && savedViewpoints.HasSavedData())
+            {
+                savedViewpoints.LoadViewpoints(viewpoints);
+                Debug.Log("Loaded saved camera viewpoints");
+                return;
+            }
+            
+            // Only create defaults if no viewpoints exist
             if (viewpoints.Count == 0)
             {
+                // Overview - Standing back to see the whole coffee bar
                 viewpoints.Add(new CameraViewpoint
                 {
                     viewName = GameConstants.ViewPoints.OVERVIEW,
-                    position = new Vector3(0, 1.8f, -1.5f),
-                    rotation = new Vector3(20, 0, 0),
-                    fieldOfView = 60f
+                    position = new Vector3(0, 1.7f, 1.8f),
+                    rotation = new Vector3(10, 180, 0),
+                    fieldOfView = 75f
                 });
                 
+                // Machine View - Standing in front of espresso machine
                 viewpoints.Add(new CameraViewpoint
                 {
                     viewName = GameConstants.ViewPoints.MACHINE_VIEW,
-                    position = new Vector3(-0.2f, 1.6f, -0.8f),
-                    rotation = new Vector3(10, 0, 0),
-                    fieldOfView = 50f
+                    position = new Vector3(-0.2f, 1.6f, 1.0f),
+                    rotation = new Vector3(5, 180, 0),
+                    fieldOfView = 65f
                 });
                 
+                // Grinder View - Standing in front of grinder
                 viewpoints.Add(new CameraViewpoint
                 {
                     viewName = GameConstants.ViewPoints.GRINDER_VIEW,
-                    position = new Vector3(-0.8f, 1.6f, -0.8f),
-                    rotation = new Vector3(10, 0, 0),
-                    fieldOfView = 50f
+                    position = new Vector3(-0.8f, 1.6f, 1.1f),
+                    rotation = new Vector3(8, 180, 0),
+                    fieldOfView = 60f
                 });
                 
+                // Workspace View - Standing at working area with slight angle
                 viewpoints.Add(new CameraViewpoint
                 {
                     viewName = GameConstants.ViewPoints.WORKSPACE_VIEW,
-                    position = new Vector3(0.3f, 1.6f, -0.8f),
-                    rotation = new Vector3(15, -10, 0),
-                    fieldOfView = 55f
+                    position = new Vector3(0.4f, 1.6f, 1.2f),
+                    rotation = new Vector3(12, 170, 0),
+                    fieldOfView = 70f
                 });
             }
         }
@@ -203,5 +224,48 @@ namespace BaristaSimulator.Modules
         }
         
         public bool IsTransitioning => isTransitioning;
+        
+        public void SaveViewpoints()
+        {
+            if (savedViewpoints != null)
+            {
+                savedViewpoints.SaveViewpoints(viewpoints);
+                Debug.Log("Camera viewpoints saved to ScriptableObject");
+            }
+            else
+            {
+                Debug.LogWarning("No CameraViewpointAsset assigned for saving");
+            }
+        }
+        
+        public void LoadViewpoints()
+        {
+            if (savedViewpoints != null && savedViewpoints.HasSavedData())
+            {
+                savedViewpoints.LoadViewpoints(viewpoints);
+                Debug.Log("Camera viewpoints loaded from ScriptableObject");
+            }
+            else
+            {
+                Debug.LogWarning("No saved viewpoints found or no asset assigned");
+            }
+        }
+        
+        public void ResetToDefaults()
+        {
+            viewpoints.Clear();
+            InitializeDefaultViewpoints();
+            Debug.Log("Camera viewpoints reset to defaults");
+        }
+        
+        public CameraViewpointAsset GetSavedViewpointsAsset()
+        {
+            return savedViewpoints;
+        }
+        
+        public void SetSavedViewpointsAsset(CameraViewpointAsset asset)
+        {
+            savedViewpoints = asset;
+        }
     }
 }
