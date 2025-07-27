@@ -1,0 +1,16 @@
+"All units are in centimeters (cm) unless otherwise noted. (W: Width, D: Depth, H: Height)",,,,,
+,에셋 이름 (Asset Name),Width (W),Depth (D),Height (H),추가 설명 (Additional Notes)
+Environment,커피 바 (Coffee Bar),220 cm,75 cm,90 cm,"The KCA rulebook recommends a width of 200-240cm, depth of 60-90cm, and height of 80-90cm. This value is an average within that range"
+,싱크대 (Sink),40 cm,40 cm,20 cm,This area is included within the coffee bar.
+Equipment,에스프레소 머신,75 cm,55 cm,50 cm,Typical size for a commercial 2-Group machine.
+,커피 그라인더,20 cm,35 cm,60 cm,Average size for a commercial automatic grinder.
+,넉 박스 (Knock Box),15 cm,15 cm,15 cm,Can be embedded in or placed on top of the bar counter.
+Tools & Wares,포터필터 (Portafilter),7 cm,25 cm,8 cm,The standard basket diameter is 58mm. This must match the tamper.
+,탬퍼 (Tamper),6 cm,6 cm,9 cm,"The tamping base diameter is 58mm, matching the portafilter basket."
+,샷 글라스 (Shot Glass),5 cm,5 cm,7 cm,A glass with an approximate volume of 1oz (30ml)
+,데미타세 잔 (Demitasse Cup),6.5 cm,6.5 cm,6 cm,An espresso-specific cup with a volume of approx. 2-3oz (60-90ml).
+,카푸치노 잔 (Cappuccino Cup),10 cm,10 cm,7 cm,Volume of approx. 5-6oz (150-180ml). The official KCA cup is approx. 190ml.
+,잔 받침 (Saucer),15 cm,15 cm,2 cm,Used for both Demitasse and Cappuccino cups.
+,스팀 피처 (Steam Pitcher	),12 cm,9 cm,11 cm,Standard size with an approximate volume of 12oz (350ml).
+,서빙용 쟁반 (Serving Tray),35 cm,25 cm,3 cm,Sized to hold four drinks.
+,스팀행주 받침대 (Steam Cloth Tray),12 cm,12 cm,2 cm,A small dish-like tray for holding the steam cloth.

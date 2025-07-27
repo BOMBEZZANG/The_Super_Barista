@@ -1,0 +1,79 @@
+# ================== #
+# Unity Generated #
+# ================== #
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Aa]ssets/AssetStoreTools/
+
+# =================================================================== #
+# Unity C# Project Files (Visual Studio, Rider, VS Code)              #
+# =================================================================== #
+export/
+.vs/
+*.sln
+*.suo
+*.sln.DotSettings.user
+*.csproj
+*.unityproj
+*.userprefs
+*.pidb
+*.booproj
+
+# ================================ #
+# Operating System Generated Files #
+# ================================ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+# ========================================================= #
+# 대용량 에셋 파일 제외 (용량 관리 목적)                      #
+# 경고: 이 설정은 다른 환경에서 프로젝트를 열 때 문제를 일으킵니다. #
+# ========================================================= #
+
+# 3D 모델 파일 (3D Models)
+*.fbx
+*.obj
+*.blend
+*.dae
+*.3ds
+*.max
+
+# 텍스처 및 이미지 에셋 (Textures and Image Assets)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.psd
+*.tga
+*.tif
+*.bmp
+
+# 메테리얼 에셋 (Materials)
+*.mat
+
+# 오디오 에셋 (특히 비압축 원본) (Audio Assets)
+*.wav
+*.mp3
+*.ogg
+
+# 비디오 에셋 (Video Files)
+*.mp4
+*.mov
+*.avi
+*.wmv
+
+# Unity가 생성하는 대용량 데이터 에셋 (Large Unity-generated Data)
+*.lighting
+NavMesh.asset
+OcclusionCullingData.asset

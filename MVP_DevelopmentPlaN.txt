@@ -1,0 +1,66 @@
+**MVP Development Plan: A Phased Approach**
+
+This plan breaks down the MVP development into four distinct, testable phases. Each phase must be completed, reviewed, and approved before proceeding to the next.
+
+---
+
+### **Phase 1: Environment Setup & Core Player Foundation (The Stage)**
+
+**Goal:** To create a visually complete but non-interactive scene. The purpose of this phase is to set up the foundational environment and basic player view mechanics.
+
+**Tasks:**
+1.  **Scene & Environment Setup:** Import all provided 3D models (espresso machine, grinder, cups, etc.) into a new Unity scene. Arrange them to create the L-shaped bar station as specified in the rulebook.
+2.  **Lighting & Rendering:** Implement basic lighting to ensure the environment is clear and visually appealing on a mobile device.
+3.  **Core Player View System:** Implement the 1st-person camera system. The player should not be able to move freely. Instead, implement the fixed-viewpoint system where the player can tap UI buttons to switch between key views (e.g., "Machine View," "Grinder View").
+
+**✅ Deliverable for Review:** A test build where the user can launch the app, see the fully assembled coffee bar, and switch between the different camera viewpoints. No object interaction is expected at this stage.
+
+---
+
+### **Phase 2: Core Interaction System (The "Hands")**
+
+**Goal:** To build the fundamental mechanics of how the player interacts with the world. This phase focuses on creating a robust and reusable interaction system.
+
+**Tasks:**
+1.  **`PlayerInteractionModule` Development:** Create the core script that handles player input. This will likely use a raycast from the camera to detect which object the player is "looking at" and tapping.
+2.  **`InteractableObject` Component:** Create a generic base component that can be attached to any object that the player can interact with (cups, tamper, portafilter, etc.).
+3.  **Basic "Pick Up & Place" Logic:** Implement the core interaction loop. The player should be able to:
+    * Tap an `InteractableObject` to "pick it up" (the object becomes attached to a fixed position in front of the camera).
+    * Tap a valid surface to "place" the object back into the world.
+4.  **`ObjectStateModule` Foundation:** Create the basic script for managing object states. For this phase, it only needs to track a simple state like `isHeld`.
+
+**✅ Deliverable for Review:** A test build where the player can look at a simple object (like a cup), tap to pick it up, look at a table, and tap again to place it down.
+
+---
+
+### **Phase 3: Implementing 'Smart Object' Modules (The "Brains")**
+
+**Goal:** To bring the key equipment to life by implementing their specific functionalities and logic, building directly on the interaction system from Phase 2.
+
+**Tasks:**
+1.  **`EspressoMachineModule` Implementation:**
+    * Implement the machine inspection logic: Tapping the extraction/steam buttons should trigger visual and sound effects (using the `VFX_Module`).
+    * Implement the cup warming logic: Allow cups to be filled with water particles.
+2.  **`GrinderModule` Implementation:**
+    * Implement the dosing logic: When a portafilter is placed in the grinder's trigger zone, it should fill with a "ground coffee" texture/mesh.
+3.  **Integration of `ObjectStateModule`:**
+    * Expand the state module to track game-critical states like `cup.isWarmed`, `cup.isClean`, `portafilter.hasCoffee`, `portafilter.isTamped`. The actions in this phase should correctly update these states.
+
+**✅ Deliverable for Review:** A build where the player can perform all the *actions* required for the 'Preparation Evaluation' (e.g., press buttons to see steam, fill cups with water, get coffee in the portafilter). At this stage, there is no scoring or rule enforcement.
+
+---
+
+### **Phase 4: Evaluation System & UI Integration (The "Judge & Scoreboard")**
+
+**Goal:** To complete the MVP by implementing the final layer: the evaluation logic that scores the player's actions and the UI that displays the final results.
+
+**Tasks:**
+1.  **`EvaluationModule` Development:**
+    * Create the core logic that "listens" for events from the other modules (e.g., `OnMachineButtonInspected`, `OnCupWiped`, `OnPracticeShotComplete`).
+    * Implement the KCA rule checks based on these events. For example, when the practice shot is complete, this module checks the `portafilter.extractedVolume` and if the target was a `shotGlass`.
+2.  **UI Module & Results Screen:**
+    * Implement the final Results Screen UI, designed to look like the official KCA evaluation sheet.
+    * Write the logic to populate this screen with the data from the `EvaluationModule` (Pass/Fail status and reasons for failure for each of the four items).
+3.  **Final Integration:** Connect all modules to ensure a seamless flow from the start of the simulation to the presentation of the final, accurate score report.
+
+**✅ Deliverable for Review:** The complete, fully functional MVP. The player can run through the entire 'Preparation Evaluation' process and receive a correct and detailed score report at the end.

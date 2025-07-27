@@ -1,0 +1,28 @@
+This plan breaks down the MVP development into four distinct, testable phases. Each phase must be completed, reviewed, and approved before proceeding to the next.
+
+
+### **Phase 1: Grey-box Modeling & Scene Prototyping (The Blueprint)**
+
+**(Previous Version: Grey-box Prototyping & Core Gameplay Foundation)**
+
+**Goal:** To create a functionally and spatially accurate prototype of the game world. This phase **begins with the creation of simple 'grey-box' models** based on a pre-defined dimensions list. The resulting scene will serve as the master blueprint for all subsequent art and engineering development.
+
+**Tasks:**
+
+1.  **Grey-box Asset Creation (New First Step):**
+    * Based on the provided **"Grey-box Model Standard Dimensions"** table, create simple 3D placeholder models for every asset on the list (e.g., Coffee Bar, Espresso Machine, Portafilter, Cups).
+    * These models should be made from basic primitive shapes (cubes, cylinders, etc.) and **must strictly adhere to the specified dimensions (Width, Depth, Height).** No textures or fine details are required.
+
+2.  **Scene & Environment Setup:**
+    * Import the newly created grey-box models into a new Unity scene.
+    * Arrange these assets to construct the L-shaped bar station, ensuring all placements are logical and follow the KCA rulebook's general layout.
+
+3.  **Player Scale & Camera Setup:**
+    * Set up the 1st-person camera at a realistic player height relative to the grey-box environment.
+    * Verify that the bar height, machine reach, and overall ergonomics feel correct from the player's perspective.
+
+4.  **Core Player View System Implementation:**
+    * Implement the fixed-viewpoint system. Create UI buttons that allow the player to switch between key camera views (e.g., "Machine View," "Grinder View").
+    * The placement and angle of these cameras **must be finalized** during this phase, as they are a critical part of the core level design and user experience.
+
+**✅ Deliverable for Review:** A test build where the user can launch the app, see the coffee bar constructed from the **newly created grey-box models**, and switch between the finalized camera viewpoints. The build must demonstrate that the scale, layout, and player navigation feel correct and are ready to serve as the foundational blueprint. No object interaction is expected.
